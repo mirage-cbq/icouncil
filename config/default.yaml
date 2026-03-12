@@ -1,0 +1,66 @@
+# AI Council 默认配置
+
+system:
+  max_debate_rounds: 3        # 辩论层最大轮次
+  max_supplement_rounds: 2    # 补充调查最大次数
+  consensus_warning_threshold: 0.9  # 触发共识预警的一致度阈值
+  timeout_seconds: 300        # 单角色超时时间
+
+# 模型配置（可按角色指定不同模型）
+models:
+  analyst:
+    model: "claude-sonnet-4-20250514"
+    temperature: 0.3
+    max_tokens: 2000
+
+  drafter:
+    model: "claude-sonnet-4-20250514"
+    temperature: 0.8
+    max_tokens: 3000
+
+  critic:
+    model: "claude-sonnet-4-20250514"
+    temperature: 0.3
+    max_tokens: 2000
+
+  specialist:
+    model: "claude-sonnet-4-20250514"
+    temperature: 0.5
+    max_tokens: 2000
+
+  integrator:
+    model: "claude-sonnet-4-20250514"
+    temperature: 0.2
+    max_tokens: 4000
+
+# 专科顾问领域映射
+# 准备层会根据议题类型动态加载
+specialists:
+  legal:
+    name: "法律顾问"
+    tools: ["law_database", "case_search"]
+  financial:
+    name: "财务顾问"
+    tools: ["financial_model", "market_data"]
+  technical:
+    name: "技术顾问"
+    tools: ["tech_docs", "code_review"]
+  ethical:
+    name: "伦理顾问"
+    tools: []
+  risk:
+    name: "风险顾问"
+    tools: ["risk_database"]
+
+# 置信度权重（整合层加权用）
+role_weights:
+  drafter: 1.0
+  critic: 1.2       # 批驳官略高，避免风险被低估
+  specialist: 1.3   # 专科意见权重最高
+  integrator: 1.0
+
+# 输出配置
+output:
+  format: "markdown"       # markdown / json / html
+  include_process: true    # 是否包含完整辩论过程
+  output_dir: "./output"
