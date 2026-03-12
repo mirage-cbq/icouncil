@@ -1,11 +1,21 @@
+# 配置文件（含敏感信息）
+config/model-config.yaml
+config/council-config.yaml
+
+# 运行时输出
+outputs/
+logs/
+
+# 环境
 .env
-__pycache__/
-*.pyc
-*.pyo
-output/
+.env.*
+!.env.example
+
+# 系统文件
 .DS_Store
-*.egg-info/
-dist/
-build/
-.venv/
-venv/
+Thumbs.db
+
+# 编辑器
+.vscode/
+.idea/
+*.swp

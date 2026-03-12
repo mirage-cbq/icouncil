@@ -1,0 +1,52 @@
+# 模型配置示例
+# 复制此文件为 model-config.yaml 并填入实际配置
+
+roles:
+  decomposer:
+    provider: openai          # openai | anthropic | ollama | custom
+    model: gpt-4o
+    temperature: 0.3
+    max_tokens: 2000
+
+  drafter:
+    provider: anthropic
+    model: claude-opus-4-5
+    temperature: 0.8
+    max_tokens: 3000
+
+  critic:
+    provider: anthropic
+    model: claude-sonnet-4-5
+    temperature: 0.2
+    max_tokens: 2000
+
+  integrator:
+    provider: openai
+    model: gpt-4o
+    temperature: 0.2
+    max_tokens: 4000
+
+  specialists:
+    legal:
+      provider: anthropic
+      model: claude-sonnet-4-5
+      temperature: 0.3
+      max_tokens: 2000
+
+    financial:
+      provider: openai
+      model: gpt-4o
+      temperature: 0.3
+      max_tokens: 2000
+
+    technical:
+      provider: ollama          # 本地模型示例
+      model: qwen3.5:9b
+      temperature: 0.4
+      max_tokens: 2000
+
+    ethics:
+      provider: anthropic
+      model: claude-sonnet-4-5
+      temperature: 0.4
+      max_tokens: 2000

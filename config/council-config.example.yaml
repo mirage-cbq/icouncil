@@ -1,0 +1,31 @@
+# 评议系统行为配置示例
+# 复制此文件为 council-config.yaml 并按需修改
+
+debate:
+  max_rounds: 3                       # 辩论最大轮次
+  require_new_argument: true          # 每轮必须提出新论据
+
+flow:
+  max_supplement_rounds: 2            # 最大回流补充次数
+  max_total_rounds: 20                # 全局最大轮次上限（防死循环）
+  timeout_seconds: 300                # 单阶段超时时间
+
+quality:
+  min_confidence_threshold: 0.3      # 低于此值的意见自动降权
+  consensus_variance_threshold: 0.1  # 低于此值触发强制反向挑战
+  critic_min_issues: 1               # 批驳官最少有效质疑数量
+  critic_min_severity: 2             # 有效质疑的最低严重程度
+
+specialists:
+  auto_trigger: true                  # 是否自动触发专科顾问
+  manual_override: true               # 是否允许手动指定专科顾问
+  available:
+    - legal
+    - financial
+    - technical
+    - ethics
+
+output:
+  include_process_log: true           # 是否包含完整辩论过程
+  language: zh                        # 输出语言
+  format: markdown                    # markdown | json | both
